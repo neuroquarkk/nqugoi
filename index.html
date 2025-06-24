@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>nqugoi</title>
+        <link href="css/style.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>nqugoi</h1>
+        </div>
+
+        <div class="main-container">
+            <div class="game-area">
+                <canvas id="canvas" width="600" height="600"></canvas>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <h3>Simulation</h3>
+                    <div class="button-row">
+                        <button id="playPauseBtn">Start</button>
+                        <button id="stepBtn">Step</button>
+                        <button id="clearBtn">Clear</button>
+                    </div>
+                    <div class="fps-display">
+                        <label>FPS:</label>
+                        <span id="fpsValue">10</span>
+                    </div>
+                    <input
+                        type="range"
+                        id="fpsSlider"
+                        min="1"
+                        max="120"
+                        value="10"
+                    />
+                </div>
+
+                <div class="control-group">
+                    <h3>Grid Settings</h3>
+                    <label>
+                        Grid Size:
+                        <input
+                            type="number"
+                            id="gridSize"
+                            value="50"
+                            min="20"
+                        />
+                    </label>
+                    <label>
+                        Species Count:
+                        <input
+                            type="number"
+                            id="speciesCount"
+                            value="2"
+                            min="2"
+                        />
+                    </label>
+                    <label>
+                        <input type="checkbox" id="wraparound" checked />
+                        Wraparound
+                    </label>
+                    <button id="applyGridBtn">Apply Settings</button>
+                </div>
+
+                <div class="control-group">
+                    <h3>Painting</h3>
+                    <div>Selected Species:</div>
+                    <div class="species-colors" id="speciesColors"></div>
+                    <button id="randomSeedBtn">Random Seed</button>
+                </div>
+
+                <div class="stats" id="stats">
+                    <div>Generation: <span id="generation">0</span></div>
+                    <div>Total Cells: <span id="totalCells">0</span></div>
+                </div>
+
+                <div class="info">
+                    <strong>Game of Immigration Rules:</strong><br />
+                    • Cells survive with 2-3 neighbors<br />
+                    • New cells born with exactly 3 neighbors<br />
+                    • Born cells adopt majority species<br />
+                    • Click to paint, Shift+click to erase<br />
+                    • Spacebar: play/pause, Ctrl+c: clear, Ctrl+r: random
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="src/index.ts"></script>
+    </body>
+</html>
