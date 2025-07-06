@@ -178,4 +178,40 @@ export class Canvas {
             isDrawing = false;
         });
     }
+
+    public saveAsImage(filename: string = 'game-of-immigration'): void {
+        const tempCanvas = document.createElement('canvas');
+        const tempCtx = tempCanvas.getContext('2d');
+
+        if (!tempCtx) {
+            console.error('Failed to create temporary canvas context');
+            return;
+        }
+
+        tempCanvas.width = this.canvas.width;
+        tempCanvas.height = this.canvas.height;
+
+        tempCtx.fillStyle = '#ffffff';
+        tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+        tempCtx.drawImage(this.canvas, 0, 0);
+
+        tempCanvas.toBlob(blob => {
+            if (!blob) {
+                console.error('Failed to create image blob');
+                return;
+            }
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${filename}-${Date.now()}.png`;
+
+            document.body.append(link);
+            link.click();
+            document.body.removeChild(link);
+
+            URL.revokeObjectURL(url);
+        }, 'image/png');
+    }
 }

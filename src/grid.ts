@@ -147,4 +147,23 @@ export class Grid {
 
         return count;
     }
+
+    public getSpeciesCounts(): { [species: number]: number } {
+        const counts: { [species: number]: number } = {};
+
+        for (let i = 1; i <= this.speciesCount; i++) {
+            counts[i] = 0;
+        }
+
+        for (let y = 0; y < this.size; y++) {
+            for (let x = 0; x < this.size; x++) {
+                const cell = this.cells[y][x];
+                if (cell > 0) {
+                    counts[cell] = (counts[cell] || 0) + 1;
+                }
+            }
+        }
+
+        return counts;
+    }
 }

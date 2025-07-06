@@ -73,6 +73,10 @@ export class Controls {
             'click',
             () => this.applyGridSettings()
         );
+
+        Utils.getElement<HTMLButtonElement>('saveImageBtn').addEventListener('click', () => {
+            this.canvas.saveAsImage();
+        })
     }
 
     private toggleSimulation(): void {

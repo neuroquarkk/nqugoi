@@ -226,6 +226,57 @@ label {
     box-shadow: 0 0 12px rgba(0, 255, 0, 0.6);
 }
 
+.species-counts-container {
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+
+.species-counts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.species-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    background: linear-gradient(135deg, #000, #111);
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-size: 11px;
+    transition: all 0.2s ease;
+    min-height: 28px;
+}
+
+.species-count:hover {
+    border-color: #00ff00;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+    transform: translateY(-1px);
+}
+
+.count-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    border: 1px solid #333;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.species-count span {
+    color: #00ff00;
+    font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+    text-shadow: 0 0 2px rgba(0, 255, 0, 0.3);
+    min-width: 24px;
+    text-align: right;
+    letter-spacing: 0.5px;
+}
+
 .stats {
     background: rgba(0, 0, 0, 0.7);
     border: 1px solid #333;
@@ -325,6 +376,22 @@ label {
         width: 20px;
         height: 20px;
     }
+
+    .species-counts {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: 4px;
+    }
+
+    .species-count {
+        padding: 4px 6px;
+        font-size: 10px;
+        min-height: 24px;
+    }
+
+    .count-color {
+        width: 12px;
+        height: 12px;
+    }
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
@@ -341,5 +408,19 @@ label {
     .game-area {
         order: 2;
         min-height: auto;
+    }
+
+    .species-counts {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    }
+
+    .species-count {
+        gap: 4px;
+        padding: 3px 5px;
+    }
+
+    .species-count span {
+        min-width: 20px;
+        font-size: 10px;
     }
 }

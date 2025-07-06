@@ -125,6 +125,7 @@ export class GameApp {
     public updateStats(): void {
         const generationElement = Utils.getElement('generation');
         const totalCellsElement = Utils.getElement('totalCells');
+        const speciesCountElement = Utils.getElement('speciesCounts');
 
         if (generationElement) {
             generationElement.textContent = this.grid.generation.toString();
@@ -134,6 +135,29 @@ export class GameApp {
             totalCellsElement.textContent = this.grid
                 .getTotalCells()
                 .toString();
+        }
+
+        if (speciesCountElement) {
+            const counts = this.grid.getSpeciesCounts();
+            const colors = Utils.getSpeciesColors(this.grid.speciesCount);
+
+            speciesCountElement.innerHTML = '';
+
+            for (let i = 1; i <= this.grid.speciesCount; i++) {
+                const countDiv = document.createElement('div');
+                countDiv.className = 'species-count';
+
+                const colorSquare = document.createElement('div');
+                colorSquare.className = 'count-color';
+                colorSquare.style.backgroundColor = colors[i - 1];
+
+                const countText = document.createElement('span');
+                countText.textContent = counts[i]?.toString() || '0';
+
+                countDiv.appendChild(colorSquare);
+                countDiv.appendChild(countText);
+                speciesCountElement.appendChild(countDiv);
+            }
         }
     }
 
